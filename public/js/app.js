@@ -42,8 +42,8 @@ const app = new Vue({
 				this.askName()
 			} else {
 			this.currentPlayer.name = inputName
-			this.currentPlayer.name =
-				'Usuario_' + Math.round(Math.random() * 1_000_000)
+			// this.currentPlayer.name =
+			// 	'Usuario_' + Math.round(Math.random() * 1_000_000)
 			this.socket.emit('newPlayer', this.currentPlayer.name)
 			}
 		},
