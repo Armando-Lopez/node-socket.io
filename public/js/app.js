@@ -37,15 +37,15 @@ const app = new Vue({
 	},
 	methods: {
 		askName() {
-			// let = inputName = prompt('Ingresa tu nombre')
-			// if (!inputName || !inputName.trim()) {
-			// 	this.askName()
-			// } else {
-			// this.currentPlayer.name = inputName
+			let = inputName = prompt('Ingresa tu nombre')
+			if (!inputName || !inputName.trim()) {
+				this.askName()
+			} else {
+			this.currentPlayer.name = inputName
 			this.currentPlayer.name =
 				'Usuario_' + Math.round(Math.random() * 1_000_000)
 			this.socket.emit('newPlayer', this.currentPlayer.name)
-			// }
+			}
 		},
 		listenDisconnect() {
 			this.socket.on('playerDisconnect', (game) => (this.game = game))
