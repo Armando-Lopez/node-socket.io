@@ -1,0 +1,72 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.wrapper {
+	width: 90%;
+	height: 100vh;
+	max-width: 800px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.players {
+	/* list-style: none; */
+	display: flex;
+}
+.players li {
+	list-style: none;
+	margin: 0 10px;
+}
+
+.playingWord {
+	text-align: center;
+	margin: 30px auto;
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+}
+.playingWord .letter {
+	width: 20px;
+	margin: 0 2px;
+	border-bottom: 3px solid #000;
+}
+.playingWord .letter.space {
+	border-bottom: 3px solid transparent;
+}
+
+.keyBoard {
+	width: fit-content;
+	max-width: 400px;
+	/* background-color: gray; */
+	display: flex;
+	/* justify-content: space-evenly; */
+	flex-wrap: wrap;
+	padding: 5px;
+}
+.keyBoard .letter {
+	width: 5vw;
+	min-width: 30px;
+	height: 7vh;
+	min-height: 30px;
+	margin: 3px;
+	font-size: 20px;
+	display: grid;
+	place-items: center;
+	background-color: rgba(187, 187, 187, 0.795);
+	border: 1px solid #000;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.keyBoard .letter.used {
+	background-color: rgba(70, 70, 70, 0.856);
+	cursor: initial;
+}
+.pointer {
+	pointer-events: none;
+}

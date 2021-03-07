@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ahorcado online</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div class="wrapper">
+				<h1>Ahorcado online</h1>
+
+				<ul class="players">
+					<li v-for="player in game.players" :key="player.id">
+						{{ player.name }}
+					</li>
+				</ul>
+
+				<div v-if="activePlayers === 1">
+					<div>Esperando tro jugador...</div>
+				</div>
+
+				<div v-else>
+					<div v-if="!game.playing">
+						<div v-if="currentPlayer.id !== game.currentTurn.id">
+							Esperando que {{ game.currentTurn.name }} ingrese la palabra
+						</div>
+						<button v-else @click="startGame">Comenzar</button>
+					</div>
+
+					<div v-else>
+						<div>
+              <img :src="`./img/hangman_${game.credits}.jpg`" width="280" height="180">
+						</div>
+
+						<ul class="playingWord">
+							<li
+								v-for="letter in game.playingWord"
+								class="letter"
+								:class="{space: letter.name === ' ', 'used': letter.used}"
+							>
+								<h2>{{ letter.used ? letter.name : '' }}</h2>
+							</li>
+						</ul>
+						<!-- <div v-if="currentPlayer.id !== game.currentTurn.id">
+							{{ game.currentTurn.name }} Está adivinando...
+						</div> -->
+						<div class="keyBoard">
+							<span
+								v-for="(letter, index) in game.keyBoard"
+								:key="letter.name"
+								class="letter"
+								:class="{'used' : letter.used, 'pointer' : currentPlayer.id === game.currentTurn.id}"
+								@click="selectLetter(letter.name, index)"
+							>
+								<b>{{ letter.name }}</b>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/app.js"></script>
+	</body>
+</html>
